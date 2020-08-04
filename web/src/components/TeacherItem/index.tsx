@@ -19,16 +19,15 @@ function TeacherItem() {
                         <br /><br />
                         Ah e aqui também, mas vamo lá, textinho de criatividade!
                     </p>
-
                     <footer>
                         <p>
-                            Preço/hora
-                            <strong>R$ 20,00</strong>
-                            <button type="button">
-                                <img src={whatsappIcon} alt="Whatsapp"/>
-                                Entrar em contato
-                            </button>
+                        Preço/hora
+                        <strong>R$ 15,00</strong>
                         </p>
+                        <button type="button">
+                        <img src={whatsappIcon} alt="Whatsapp" />
+                        Entrar em Contato
+                        </button>
                     </footer>
     </article>
 
