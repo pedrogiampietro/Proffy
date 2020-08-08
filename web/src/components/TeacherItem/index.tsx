@@ -2,32 +2,50 @@ import React from 'react';
 
 import whatsappIcon from '../../assets/images/icons/whatsapp.svg'
 import './styles.css'
+import api from '../../services/api';
 
-function TeacherItem() {
+export interface Teacher {
+    id: number;
+    avatar: string;
+    bio: string;
+    cost: number;
+    name: string;
+    subject: string;
+    whatsapp: string; 
+}
+
+
+interface TeacherItemProps {
+    teacher: Teacher
+}
+
+const TeacherItem: React.FC<TeacherItemProps> = ({ teacher }) => {
+    function createNewConnection() {
+        api.post('connections', {
+            user_id: teacher.id
+        })
+    }
+    
     return (
 
     <article className="teacher-item">
                     <header>
-                        <img src="https://avatars2.githubusercontent.com/u/26656644?s=460&u=5a101d4217b75059c7c3d5f374604e9a6b8483d7&v=4" alt="Pedro Giampietro"/>
+                        <img src={teacher.avatar} alt={teacher.name}/>
                     <div>
-                        <strong>Pedro Giampietro</strong>
-                        <span>Historia</span>
+                        <strong>{teacher.name}</strong>
+                         <span>{teacher.subject}</span>
                     </div>
                     </header>
-                    <p>
-                        Eu não sei o que colocar aqui, mas como tem que por algo..
-                        <br /><br />
-                        Ah e aqui também, mas vamo lá, textinho de criatividade!
-                    </p>
+                    <p>{teacher.bio}</p>
                     <footer>
                         <p>
                         Preço/hora
-                        <strong>R$ 15,00</strong>
+                        <strong>R$ {teacher.cost}</strong>
                         </p>
-                        <button type="button">
+                        <a onClick={createNewConnection} href={`https://wa.me/${teacher.whatsapp}`}>
                         <img src={whatsappIcon} alt="Whatsapp" />
                         Entrar em Contato
-                        </button>
+                        </a>
                     </footer>
     </article>
 
